@@ -1,0 +1,44 @@
+name: Validate DNS Records
+
+on:
+  pull_request:
+    paths:
+      - "records/**"
+      - "scripts/**"
+      - "schemas/**"
+      - "reserved.json"
+      - "package.json"
+      - "package-lock.json"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "records/**"
+      - "scripts/**"
+      - "schemas/**"
+      - "reserved.json"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Records
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate DNS records
+        run: npm run validate
