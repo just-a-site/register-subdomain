@@ -1,0 +1,46 @@
+{
+  "name": "example",
+  "owner": "ExampleUser",
+
+  "records": {
+    "A": [
+      "192.0.2.10"
+    ],
+
+    "AAAA": [
+      "2001:db8::10"
+    ],
+
+    "CNAME": "example.com",
+
+    "TXT": [
+      "example-verification=abc123"
+    ],
+
+    "MX": [
+      {
+        "priority": 10,
+        "target": "mail.example.com"
+      }
+    ],
+
+    "SRV": [
+      {
+        "service": "_minecraft",
+        "protocol": "_tcp",
+        "priority": 0,
+        "weight": 5,
+        "port": 25565,
+        "target": "mc.example.com"
+      }
+    ],
+
+    "CAA": [
+      {
+        "flags": 0,
+        "tag": "issue",
+        "value": "letsencrypt.org"
+      }
+    ]
+  }
+}
