@@ -1,7 +1,16 @@
+```yaml
 name: Validate Domains
 
 on:
   pull_request:
+    paths:
+      - "domains/**"
+      - "reserved.json"
+      - "scripts/validate.js"
+
+  push:
+    branches:
+      - main
     paths:
       - "domains/**"
       - "reserved.json"
@@ -12,6 +21,7 @@ permissions:
 
 jobs:
   validate:
+    name: Validate Records
     runs-on: ubuntu-latest
 
     steps:
@@ -23,5 +33,6 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Validate domains
+      - name: Validate DNS records
         run: node scripts/validate.js
+```
